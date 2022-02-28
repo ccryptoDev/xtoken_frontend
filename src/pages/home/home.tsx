@@ -35,7 +35,11 @@ const HomePage = (): JSX.Element | null => {
       toast.warning("Please enter name & description of NFT!");
       return;
     }
-    const tx = mintNFT(nftName, nftDesc);
+    const tx = await mintNFT(nftName, nftDesc);
+    console.log('tx------: ', tx)
+    if(tx !== false) {
+      toast.success('NFT is minted sucessfully!')
+    }
   }
 
   return (

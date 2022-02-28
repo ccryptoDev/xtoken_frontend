@@ -5,7 +5,7 @@ export const baseURI = "https://ipfs.io/ipfs/"
 export const imgURI = "https://ipfs.io/ipfs/QmPombBjkEXXYRsECMuLp6r5LjZf1Vfziw659TzxaXzRRC"
 export const INFURA_KEY="e632a702eec64a4d867d65d8923d4309"
 
-export const configNetwork = "rinkeby";
+export const configNetwork = "kovan";
 
 export const WalletTypes = {
   default: 0,
@@ -31,6 +31,13 @@ export const Config = {
     transactionText: "Transaction Pending",
     coinGeckoApi: "https://api.coingecko.com/api/v3/coins",
     infuraId: "c7a95b91ffae44e3b7fb80d9fbb98939",
+  },
+  kovan: {
+    etherscanLink: "https://kovan.etherscan.io",
+    defaultGasPrice: "15",
+    transactionText: "Transaction Pending",
+    coinGeckoApi: "https://api.coingecko.com/api/v3/coins",
+    infuraId: "e632a702eec64a4d867d65d8923d4309",
   },
   rinkeby: {
     etherscanLink: "https://rinkey.etherscan.io",
