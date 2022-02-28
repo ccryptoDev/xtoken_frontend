@@ -1,0 +1,83 @@
+
+.all-nfts, .mint-nft {
+  margin-top: 82px;
+
+  .nft-list-title {
+    margin-bottom: 10px;
+
+    h3 {
+      display: inline-block;
+      margin: 0;
+      font-size: 28px;
+      font-family: 'DMSANS-medium';
+    }
+    h3.white {
+      color: #fff;
+    }
+    h3.yellow {
+      margin-left: 10px;
+      color: #FEE720;
+    }
+    h5 {
+      font-family: 'DMSans-regular';
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 23px;
+      opacity: 0.7;
+      margin: 15px 0 20px;
+    }
+    h5.white {
+      color: #fff;
+    }
+  }
+
+  .nft {
+    display: flex;
+    border: 1px solid #2C2C2C;
+    box-sizing: border-box;
+    border-radius: 20px;
+    margin-bottom: 36px;
+    gap: 40px;
+    cursor: pointer;
+
+    .nft-image {
+      padding: 7px 0px 4px 7px;
+    }
+    .nft-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      color: #fff;
+
+      .nft-limit {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #9A9FA5;
+      }
+      .nft-title {
+        font-family: Manrope-bold;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 42px;
+        line-height: 104%;
+      }
+      .nft-desc {
+        font-family: DMSans-regular;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 23px;
+        width: 70%;
+      }
+    }
+    .mint-button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      margin-right: 2rem;
+    }
+  }  
+}

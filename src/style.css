@@ -1,0 +1,220 @@
+#root {
+  display: inline-block;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  background-size: cover;
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+.wrapper {
+  display: inline-block;
+  position: relative;
+  width: 100vw;
+  height: 100%;
+  background: #000;
+  background-size: cover;
+}
+.container {
+  margin: 0 auto;
+  width: calc(100% - 225px);
+}
+.header {
+  width: 100%;
+  padding: 20px 0 0;
+  color: #fff;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-inner a {
+  text-decoration: underline;
+  color: #fff;
+  font-family: Manrope-bold;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 104%;
+  margin: 0;
+  background-color: #FEE720;
+  background-image: linear-gradient(45deg, #FEE720, #FFF);
+  background-size: 100%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.menu-item a {
+  font-size: 18px;
+}
+.loginBtn, .menu-item {
+  padding: 12px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-sizing: border-box;
+  border-radius: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+  transition: 0.3s ease-in;
+}
+.loginBtn:hover, .menu-item:hover {
+  border: 1px solid #FEE720;
+  color: #FEE720;
+}
+.h1 {
+  color: #fff;
+  font-family: Manrope-bold;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 85px;
+  line-height: 104%;
+  margin: 0;
+  /* background: radial-gradient(115.34% 5272.35% at 91.11% 0%, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%),
+  linear-gradient(0deg, #FEE720, #FEE720); */
+  background-color: #FEE720;
+  background-image: linear-gradient(45deg, #FEE720, #FFF);
+  background-size: 100%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.banner-desc {
+  color: #fff;
+  padding: 24px 0;
+  font-family: DMSans-regular;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 23px;
+}
+.main-btn {
+  width: 176px;
+  height: 54px;
+  background: #FEE720;
+  border: 1px solid #FEE720;
+  border-radius: 10px;
+  font-family: DMSans-regular;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 23px;
+  text-align: center;
+  color: #000000;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.main-btn:hover {
+  opacity: 0.6;
+}
+.mint-block {
+  width: 100%;
+  margin-top: 6rem;
+}
+.mint-block-inner {
+  margin: 0 auto;
+  width: calc(100% - 225px);
+}
+.nft-block {
+  box-shadow: 0 0 40px rgb(115 255 66 / 36%);
+  position: relative;
+  z-index: 250;
+  margin: auto;
+  width: 379px;
+  background: #0b302b;
+  border: 1.75px solid #101820;
+  border-radius: 44px;
+  padding: 6px 5px;
+}
+.nft-block-inner {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  border-radius: 44px;
+  border: 8px solid hsla(0,0%,100%,.09);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  flex-flow: column nowrap;
+  padding: 0 0 30px;
+}
+.nft-image {
+  margin: 10px auto 0;
+  width: 336px;
+  height: 336px;
+  display: flex;
+  border: 1px solid hsla(0,0%,100%,.2);
+  box-sizing: border-box;
+  border-radius: 19px;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
+.nft-image img {
+  width: 310px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  height: auto;
+  overflow: hidden;
+  border-radius: 20px;
+}
+.nft-price {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  margin: 10px 0 20px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: -.04em;
+  color: #8dff1f;
+}
+.nft-content {
+  font-family: DMSans-regular;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: -.04em;
+  color: #8dff1f;
+  margin: 0 0 20px;
+  padding: 0 25px;
+}
+.nft-content input, .nft-content textarea {
+  width: 100%;
+  height: 40px;
+  padding: 8px 10px;
+  font-size: 14px;
+  line-height: 18px;
+  -webkit-letter-spacing: 0.01em;
+  -moz-letter-spacing: 0.01em;
+  -ms-letter-spacing: 0.01em;
+  letter-spacing: 0.01em;
+  color: #333;
+  -webkit-transition: 300ms all;
+  transition: 300ms all;
+  background: #FFFFFF;
+  border: 1px solid #E0E4E8;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 4px rgb(0 0 0 / 5%);
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+.nft-content input {
+  height: 40px;
+}
+.nft-content textarea {
+  height: 80px;
+}

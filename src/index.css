@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@font-face {
+  font-family: "Manrope-bold";
+  src: local("Manrope"),
+    url("./assets/fonts/Manrope/bold.otf") format("opentype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "Manrope-semibold";
+  src: local("Manrope"),
+    url("./assets/fonts/Manrope/semibold.otf") format("opentype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "Manrope-medium";
+  src: local("Manrope"),
+    url("./assets/fonts/Manrope/medium.otf") format("opentype");
+  font-weight: medium;
+}
+@font-face {
+  font-family: "Manrope-regular";
+  src: local("Manrope"),
+    url("./assets/fonts/Manrope/regular.otf") format("opentype");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Manrope-light";
+  src: local("Manrope"),
+    url("./assets/fonts/Manrope/light.otf") format("opentype");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Manrope-thin";
+  src: local("Manrope"),
+    url("./assets/fonts/Manrope/light.otf") format("opentype");
+  font-weight: thin;
+}
+
+@font-face {
+  font-family: "DMSans-bold";
+  src: local("DMSans"),
+    url("./assets/fonts/DMSans/DMSans-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "DMSans-bolditalic";
+  src: local("DMSans"),
+    url("./assets/fonts/DMSans/DMSans-BoldItalic.ttf") format("truetype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "DMSans-medium";
+  src: local("DMSans"),
+    url("./assets/fonts/DMSans/DMSans-Medium.ttf") format("truetype");
+  font-weight: medium;
+}
+@font-face {
+  font-family: "DMSans-metiumitalic";
+  src: local("DMSans"),
+    url("./assets/fonts/DMSans/DMSans-MediumItalic.ttf") format("truetype");
+  font-weight: medium;
+}
+@font-face {
+  font-family: "DMSans-regular";
+  src: local("DMSans"),
+    url("./assets/fonts/DMSans/DMSans-Regular.ttf") format("truetype");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "DMSans-italic";
+  src: local("DMSans"),
+    url("./assets/fonts/DMSans/DMSans-Italic.ttf") format("truetype");
+  font-weight: normal;
+}

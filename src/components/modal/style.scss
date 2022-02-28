@@ -1,0 +1,173 @@
+#modal {
+  display: block;
+  transition: all 0.3s linear;
+  &.fade:not(.show) {
+    visibility: hidden;
+    opacity: 0;
+  }
+  &.fade.show {
+    visibility: visible;
+    opacity: 1;
+  }
+  .close {
+    font-size: 29px;
+    font-weight: 400;
+    line-height: 1;
+    color: #000;
+    opacity: 1;
+    border: 0;
+    background-color: #fff;
+    border-radius: 56px;
+    cursor: pointer;
+  }
+}
+.modal-open {
+  overflow: hidden;
+  .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+.modal.show {
+  display: block;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  display: none;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  outline: 0;
+  text-align: center;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px;
+  }
+}
+
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: 20px 0;
+  pointer-events: none;
+  max-width: 975px;
+  vertical-align: middle;
+  display: inline-block;
+
+  .modal.fade & {
+    transition: transform 0.3s ease-out;
+  }
+
+  .modal.modal-static & {
+    transform: 1s;
+  }
+}
+
+// modal content
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%; 
+  color: #000;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid transparent;
+  outline: 0;
+  background: #111315;
+  border-radius: 25px;
+  padding: 15px;
+}
+
+.modal-header {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transition: 0.3s ease;
+
+  &:hover {
+    opacity: 0.5;    
+  }
+}
+
+.modal-body {
+  display: flex;
+  box-sizing: border-box;
+  gap: 20px;
+  text-align: left;
+
+  .nft-image {
+    padding: 7px 0px 4px 7px;
+    img {
+      width: 372px;
+    }
+  }
+  .nft-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    color: #fff;
+
+    .nft-awarded {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #9A9FA5;
+
+      span {
+        font-family: Manrope-bold;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 21;
+        line-height: 104%;
+        color: #FEE720;
+      }
+    }
+    .nft-title {
+      font-family: Manrope-bold;
+      font-style: normal;
+      font-weight: 800;
+      font-size: 42px;
+      line-height: 104%;
+    }
+    .nft-desc {
+      font-family: DMSans-regular;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 23px;
+      width: 80%;
+
+      p {
+        margin-top: 0px;
+        margin-bottom: 10px;
+      }
+    }
+    .inspect-transaction {
+      font-family: DMSans-regular;
+      font-style: normal;
+      font-weight: normal;
+      color: #FFFFFF;
+      font-size: 16px;
+      line-height: 21px;
+      h6 {
+        margin: 0;
+        font-size: 16px;
+        line-height: 30px;
+      }
+      p {
+        margin: 0;
+        opacity: 0.4;
+      }
+    }
+  }
+}
