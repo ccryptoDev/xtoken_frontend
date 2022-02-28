@@ -8,7 +8,11 @@ import {
   NFTs
 } from '../../components';
 import { RootState } from '../../utils/types';
-import { mintNFT } from '../../utils/useWeb3'
+import { 
+  mintNFT,
+  getTotalCoin,
+  getTotalSupply
+} from '../../utils/useWeb3'
 import '../../style.css';
 import nftImg from '../../assets/nft.png'
 
@@ -17,6 +21,18 @@ const HomePage = (): JSX.Element | null => {
   const walletConnected = useSelector<RootState, boolean>((state) => state.user.walletConnected)
   const [nftName, setNftName] = useState('')
   const [nftDesc, setNftDesc] = useState('')
+  const [totalSupply, setTotalSupply] = useState('')
+  const [totalCoin, setTotalCoin] = useState('')
+
+  useEffect(() => {
+    async function fetchTotalInfo() {
+      const totalSupply = await getTotalSupply();
+      setTotalSupply(totalSupply)
+      const totalCoin = await getTotalCoin();
+      setTotalCoin(parseFloat(totalCoin).toFixed(2))
+    }
+    fetchTotalInfo()
+  }, [])
 
   useEffect(() => {
     if(walletConnected) {
@@ -45,7 +61,16 @@ const HomePage = (): JSX.Element | null => {
   return (
     <>
       <Header isConnected={isConnected} />
-      {/* <Banner isConnected={isConnected} /> */}
+      <div className="total-info">
+        <div className="total-brick">
+          <span className="title">Total number of Bricks: </span>
+          <span>{totalSupply}</span>
+        </div>
+        <div className="total-coin">
+          <span className="title">Total ABC: </span>
+          <span>{totalCoin}</span>
+        </div>
+      </div>
       <div className="mint-block">
         <div className="mint-block-inner">
           <div className="nft-block">

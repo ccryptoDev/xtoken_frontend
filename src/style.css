@@ -239,3 +239,36 @@
 .nft-content textarea {
   height: 80px;
 }
+.total-info {
+  margin: 0 auto;
+  width: calc(100% - 300px);
+  margin-top: 3rem;
+}
+.total-info span {
+  color: #fff;
+  font-family: Manrope-bold;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 25px;
+  line-height: 104%;
+  margin-left: 25px;
+}
+.total-brick {
+  margin-bottom: 1rem;
+}
+.total-brick span.title, .total-coin span.title {
+  text-decoration: underline;
+  color: #fff;
+  font-family: Manrope-bold;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 25px;
+  line-height: 104%;
+  margin: 0;
+  background-color: #751bc7;
+  background-image: linear-gradient(45deg, #751bc7, #FFF);
+  background-size: 100%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

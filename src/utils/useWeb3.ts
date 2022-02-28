@@ -11,17 +11,10 @@ import {
   imgURI,
   INFURA_KEY 
 } from './constants'
-import { create } from 'ipfs-http-client'
 import * as IPFS from 'ipfs-core'
-
-// const ipfsClient = create('https://ipfs.infura.io:5001/api/v0')
-// const ipfsClient = create()
 
 let coin_contract: any;
 let nft_contract: any;
-
-const provider = 'https://kovan.infura.io/v3/' + INFURA_KEY
-const Web3Client = new Web3(new Web3.providers.HttpProvider(provider));
 
 const providerOptions = {
   walletconnect: {
@@ -99,8 +92,9 @@ const validateMinter = async() => {
 }
 
 const uploadToIPFS = async(nftName: string, nftDesc: string) => {
+  const lastTokenID = await getLastTokenID();
   const metadata = JSON.stringify({
-    id: 1,
+    id: Number(lastTokenID) + 1,
     img: imgURI,
     name: nftName,
     desc: nftDesc
@@ -114,6 +108,38 @@ const uploadToIPFS = async(nftName: string, nftDesc: string) => {
     console.log('error to upload to ipfs', error)
     return false;
   }
+}
+
+const getMetadataFromTokenURI = async () => {
+  let ipfsURI = ''
+  const response = await fetch(ipfsURI);
+  const jsonData = await response.json();
+  return jsonData;
+}
+
+const getLastTokenID = async() => {
+  // @ts-ignore
+  window.web3 = new Web3(window.ethereum);
+  const contract = await new window.web3.eth.Contract(nftABI, NFT_CONTRACT);
+  const tokenID = await contract.methods.getLastTokenId().call()
+  return tokenID;
+}
+
+const getTotalSupply = async() => {
+  // @ts-ignore
+  window.web3 = new Web3(window.ethereum);
+  const contract = await new window.web3.eth.Contract(nftABI, NFT_CONTRACT);
+  const totalSupply = await contract.methods.totalSupply().call()
+  return totalSupply;
+}
+
+const getTotalCoin = async() => {
+  // @ts-ignore
+  window.web3 = new Web3(window.ethereum);
+  const contract = await new window.web3.eth.Contract(nftABI, NFT_CONTRACT);
+  let totalCoin = await contract.methods.getTotalABCAmount().call()
+  totalCoin = ethers.utils.formatUnits(totalCoin, 'ether')
+  return totalCoin;
 }
 
 const getTokenList = async(userWallet: string) => {
@@ -136,12 +162,14 @@ const mintNFT = async(name: string, desc: string) => {
     const tokens = await getTokenList(walletAddr)
     let price: BigNumber;
     if(tokens.length > 0)
-      price = ethers.utils.parseUnits(String(10), 'ether')
-    else 
       price = ethers.utils.parseUnits(String(10.3), 'ether')
+    else 
+      price = ethers.utils.parseUnits(String(10), 'ether')
 
     try {
-      let transaction: any = await contract.methods.mintNFT(walletAddr, price, ipfsCID.toString())
+      let transaction: any = await contract.methods.mintNFT(walletAddr, price, ipfsCID.toString()).send({
+        from: walletAddr
+      })
       return transaction
     } catch (err) {
       console.log(err)
@@ -158,5 +186,9 @@ export {
   loadContract, 
   mintNFT, 
   validateMinter,
-  getTokenList
+  getTokenList,
+  getLastTokenID,
+  getTotalSupply,
+  getTotalCoin,
+  getMetadataFromTokenURI
 };
