@@ -1,10 +1,5 @@
 import React from 'react'
 import { NFTtype } from '../../utils/types'
-import limitLogo from '../../assets/mint_limit_logo.png'
-import Img1 from '../../assets/1.png'
-import Img2 from '../../assets/2.png'
-import Img3 from '../../assets/3.png'
-import Img4 from '../../assets/4.png'
 
 interface Props {
   nftData: NFTtype;
@@ -15,25 +10,23 @@ const NFT = ({
   nftData,
   num
 }:Props) => {
-  const Image = [
-    Img1,
-    Img2,
-    Img3,
-    Img4
-  ]
-
   return (
    <div className="nft">
-    <div className="nft-image">
-      <img src={Image[num-1]} alt={nftData.title} />
-    </div>
-    <div className="nft-info">
-      <div className="nft-limit">
-        <img src={limitLogo} alt="" />
-        <span>Limited quantity of {nftData.limit}</span>
+    <div className="my-nft">
+      <div className="nft-block">
+        <div className="nft-block-inner">
+          <div className="nft-image">
+            <img src={nftData.img} alt="" />
+          </div>
+          <div className="nft-price">
+            10 ABC
+          </div>
+          <div className="nft-content">
+            <p>{nftData.name}</p>
+            <p>{nftData.desc}</p>
+          </div>
+        </div>
       </div>
-      <div className="nft-title">{nftData.title}</div>
-      <div className="nft-desc">{nftData.desc}</div>
     </div>
    </div>
   )

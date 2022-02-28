@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux'
 import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css';
 import { 
   Header,
   Banner,
   NFTs
 } from '../../components';
 import { RootState } from '../../utils/types';
+import { mintNFT } from '../../utils/useWeb3'
 import '../../style.css';
 import nftImg from '../../assets/nft.png'
 
@@ -25,7 +26,7 @@ const HomePage = (): JSX.Element | null => {
     }
   }, [walletConnected])
 
-  const Mint = () => {
+  const Mint = async() => {
     if(!isConnected) {
       toast.error("Please connect your wallet!");
       return;
@@ -34,6 +35,7 @@ const HomePage = (): JSX.Element | null => {
       toast.warning("Please enter name & description of NFT!");
       return;
     }
+    const tx = mintNFT(nftName, nftDesc);
   }
 
   return (

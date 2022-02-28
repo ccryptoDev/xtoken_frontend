@@ -1,8 +1,7 @@
 export interface NFTtype {
   id: number;
   img: string;
-  limit: number;
-  title: string;
+  name: string;
   desc: string;
 }
 

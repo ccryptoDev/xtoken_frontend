@@ -2,10 +2,21 @@ import Web3 from 'web3';
 import { ethers } from 'ethers';
 import Web3Modal from 'web3modal';
 import WalletConnectProvider from '@walletconnect/web3-provider';
-import contractABI from './abi.json';
-import { CONTRACT_ADDRESS, INFURA_KEY } from './constants'
+import coinABI from './coinABI.json';
+import nftABI from './nftABI.json';
+import { 
+  COIN_CONTRACT, 
+  NFT_CONTRACT,
+  baseURI,
+  imgURI,
+  INFURA_KEY 
+} from './constants'
+import { create } from 'ipfs-http-client'
 
-let contract: any;
+const ipfsClient = create('https://ipfs.infura.io:5001/api/v0')
+
+let coin_contract: any;
+let nft_contract: any;
 
 const providerOptions = {
   walletconnect: {
@@ -64,73 +75,53 @@ async function getUserAddress() {
   }
 }
 
-/** Connects to the contract at `CONTRACT_ADDRESS`. */
+/** Connects to the contract at `COIN_CONTRACT`. */
 async function loadContract() {
-  if (typeof contract === 'undefined') {
+  if (typeof coin_contract === 'undefined') {
     // @ts-ignore
     window.web3 = new Web3(window.ethereum);
-    contract = await new window.web3.eth.Contract(contractABI, CONTRACT_ADDRESS);
-  }
-}
-
-async function getCurrentIndex() {
-  try {
-    return (await contract.methods.getCurrentIndex().call()) - 1;
-  } catch (err) {
-    return -1;
-  }
-}
-
-async function hasSaleStarted() {
-  try {
-    return (await contract.methods.hasSaleStarted().call());
-  } catch (err) {
-    console.log("Fail");
+    coin_contract = await new window.web3.eth.Contract(coinABI, COIN_CONTRACT);
   }
 }
 
 const validateMinter = async() => {
-  if (typeof contract === 'undefined') {
-    // @ts-ignore
-    window.web3 = new Web3(window.ethereum);
-    const contract = await new window.web3.eth.Contract(contractABI, CONTRACT_ADDRESS);
-    const walletAddr = await getUserAddress();
-    const canMint = await contract.methods.canMint(walletAddr);
-    return canMint;
+  // @ts-ignore
+  window.web3 = new Web3(window.ethereum);
+  const contract = await new window.web3.eth.Contract(coinABI, COIN_CONTRACT);
+  const walletAddr = await getUserAddress();
+  const canMint = await contract.methods.canMint(walletAddr);
+  return canMint;
+}
+
+const uploadToIPFS = async(nftName: string, nftDesc: string) => {
+
+}
+
+const mintNFT = async(name: string, desc: string) => {
+  // Upload metadata to IPFS
+
+  // @ts-ignore
+  window.web3 = new Web3(window.ethereum);
+  const contract = await new window.web3.eth.Contract(coinABI, COIN_CONTRACT);
+  const walletAddr = await getUserAddress()
+  try {
+    let transaction: any = await contract.methods.mintNFT().send({
+      from: walletAddr
+    })
+
+    return transaction
+  } catch (err) {
+    console.log(err)
+    return err
   }
 }
 
-const mintNFT = async() => {
-  if (typeof contract === 'undefined') {
-    // @ts-ignore
-    window.web3 = new Web3(window.ethereum);
-    const contract = await new window.web3.eth.Contract(contractABI, CONTRACT_ADDRESS);
-    const walletAddr = await getUserAddress()
-    try {
-      let transaction: any = await contract.methods.mintNFT().send({
-        from: walletAddr
-      })
-  
-      return transaction
-    } catch (err) {
-      console.log(err)
-      return err
-    }
-  }
-}
-
-async function purchaseToad(numBought: number, totalAmount: number) {
-  const connection = await web3modal.connect();
-  const provider = new ethers.providers.Web3Provider(connection);
-  const signer = provider.getSigner();
-  const contract = new ethers.Contract(CONTRACT_ADDRESS, contractABI, signer);
-  const price = ethers.utils.parseUnits(`${totalAmount}`, 'ether');
-  
-  let transaction = await contract.mintToad(numBought, {
-    value: price
-  });
-
-  return transaction
-}
-
-export { connectWeb3, getCurrentIndex, getUserAddress, getMetaMaskInstalled, connectMetamask, purchaseToad, hasSaleStarted, loadContract, mintNFT, validateMinter };
+export { 
+  connectWeb3, 
+  getUserAddress, 
+  getMetaMaskInstalled, 
+  connectMetamask, 
+  loadContract, 
+  mintNFT, 
+  validateMinter 
+};

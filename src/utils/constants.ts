@@ -1,6 +1,8 @@
-export const CONTRACT_ADDRESS = "0x0Db65114C65C2452F726D8B1a850C4400EDb3078"
-// export const NFT_ADDRESS = "0xF7D20F6B2b59951F4A950f972319c9739cEDE6b0"
-// export const baseURI = "https://ipfs.io/ipfs/QmPombBjkEXXYRsECMuLp6r5LjZf1Vfziw659TzxaXzRRC"
+export const COIN_CONTRACT = "0x0Db65114C65C2452F726D8B1a850C4400EDb3078"
+export const NFT_CONTRACT = "0xb7b1c4f383D1714767f013F97c739b0a99C0A8dF"
+// export const NFT_CONTRACT = "0x72ECd8B6cc92a19aDe95440afCD4f5779f15C472"
+export const baseURI = "https://ipfs.io/ipfs/"
+export const imgURI = "https://ipfs.io/ipfs/QmPombBjkEXXYRsECMuLp6r5LjZf1Vfziw659TzxaXzRRC"
 export const INFURA_KEY="e632a702eec64a4d867d65d8923d4309"
 
 export const configNetwork = "rinkeby";
