@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import WalletLogo from '../../assets/wallet-logo.png'
 import {useSelector} from 'react-redux'
 import wallet from '../../utils/wallet'
+import {
+  getUserAddress
+} from '../../utils/useWeb3'
 import { RootState } from '../../utils/types'
 
 interface Props {
@@ -19,6 +22,16 @@ const Header = (props: Props) => {
     await wallet.setProvider('metamask');
     await wallet.login('metamask');
   }
+
+  useEffect(() => {
+    async function fetchMetadata() {
+      const user = await getUserAddress()
+      if(user) {
+        walletConnect()
+      }
+    }
+    fetchMetadata()
+  }, [])
 
   useEffect(() => {
     if(userAddress) {

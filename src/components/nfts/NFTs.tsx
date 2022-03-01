@@ -27,7 +27,7 @@ const NFTs = (props: Props) => {
       setNfts(nftData)
     }
     fetchData()
-  }, [])
+  }, [userWallet])
 
   return (
     <>
