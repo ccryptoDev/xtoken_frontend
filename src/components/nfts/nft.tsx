@@ -18,9 +18,9 @@ const NFT = ({
           <div className="nft-image">
             <img src={nftData.img} alt="" />
           </div>
-          <div className="nft-price">
+          {/* <div className="nft-price">
             10 ABC
-          </div>
+          </div> */}
           <div className="nft-content">
             <p>{nftData.name}</p>
             <p>{nftData.desc}</p>

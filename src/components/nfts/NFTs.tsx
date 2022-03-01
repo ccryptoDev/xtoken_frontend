@@ -1,16 +1,33 @@
 import React, { useState, useEffect } from 'react'
-import { NFTdata } from '../../pages/home/NFTdata'
 import { NFTtype } from '../../utils/types'
 import './style.scss'
+import {
+  getTokenURIList,
+  getMetadataFromTokenURI
+} from '../../utils/useWeb3'
 import NFT from './nft'
 
 interface Props {
-  isConnected: boolean;
+  userWallet: string;
 }
 
 const NFTs = (props: Props) => {
-  const {isConnected} = props
-  const nfts: Array<NFTtype> = NFTdata;
+  const {userWallet} = props
+  const [nfts, setNfts] = useState<Array<NFTtype>>([]);
+  
+  useEffect(() => {
+    async function fetchData() {
+      const tokenURI = await(getTokenURIList(userWallet))
+      console.log(tokenURI)
+      let nftData = [];
+      for(let i=0; i<tokenURI.length; i++) {
+        let metadata = await getMetadataFromTokenURI(tokenURI[i])
+        nftData.push(metadata)
+      }
+      setNfts(nftData)
+    }
+    fetchData()
+  }, [])
 
   return (
     <>

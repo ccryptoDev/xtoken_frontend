@@ -4,8 +4,6 @@ import {
   HomePage,
   MyAccount
 } from './pages'
-// import logo from './logo.svg';
-// import './App.css';
 
 function App() {
   return (

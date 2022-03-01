@@ -8,8 +8,11 @@ import {
 import { RootState } from '../../utils/types';
 import { 
   mintNFT,
+  getTokenList,
   getTotalCoin,
-  getTotalSupply
+  getTotalSupply,
+  checkUserAllowance,
+  allowUserWallet
 } from '../../utils/useWeb3'
 import '../../style.css';
 import nftImg from '../../assets/nft.png'
@@ -17,10 +20,13 @@ import nftImg from '../../assets/nft.png'
 const HomePage = (): JSX.Element | null => {
   const [isConnected, setIsConnected] = useState(false)
   const walletConnected = useSelector<RootState, boolean>((state) => state.user.walletConnected)
+  const userAddress = useSelector<RootState, string>((state) => state.user.userAddress)
   const [nftName, setNftName] = useState('')
   const [nftDesc, setNftDesc] = useState('')
   const [totalSupply, setTotalSupply] = useState('')
   const [totalCoin, setTotalCoin] = useState('')
+  const [nftPrice, setNftPrice] = useState(Number(10))
+  const [tokenList, setTokenList] = useState([])
 
   useEffect(() => {
     async function fetchTotalInfo() {
@@ -30,15 +36,30 @@ const HomePage = (): JSX.Element | null => {
       setTotalCoin(parseFloat(totalCoin).toFixed(2))
     }
     fetchTotalInfo()
-  }, [])
+  }, [totalSupply, totalCoin])
 
   useEffect(() => {
-    if(walletConnected) {
-      setIsConnected(true)
-    } else {
-      setIsConnected(false)
+    async function fetchInfo() {
+      if(walletConnected) {
+        setIsConnected(true)
+        const isAllowed = await checkUserAllowance(userAddress)
+        console.log('isAllowed -------: ', isAllowed)
+        if(isAllowed === "0") {
+          const result = await allowUserWallet(userAddress)
+        }
+      } else {
+        setIsConnected(false)
+      }
+
+      if(userAddress) {
+        const tokenList = await getTokenList(userAddress)
+        setTokenList(tokenList)
+        if(tokenList.length > 0)
+          setNftPrice(Number(10.3))
+      }
     }
-  }, [walletConnected])
+    fetchInfo()
+  }, [walletConnected, userAddress])
 
   const Mint = async() => {
     if(!isConnected) {
@@ -51,8 +72,11 @@ const HomePage = (): JSX.Element | null => {
     }
     const tx = await mintNFT(nftName, nftDesc);
     console.log('tx------: ', tx)
-    if(tx !== false) {
+    if(tx !== false && tx !== undefined) {
       toast.success('NFT is minted sucessfully!')
+      setNftPrice(Number(10.3))
+      setTotalSupply(await getTotalSupply())
+      setTotalCoin(await getTotalCoin())
     }
   }
 
@@ -77,7 +101,7 @@ const HomePage = (): JSX.Element | null => {
                 <img src={nftImg} alt="" />
               </div>
               <div className="nft-price">
-                10 ABC
+                {nftPrice} ABC
               </div>
               <div className="nft-content">
                 <input

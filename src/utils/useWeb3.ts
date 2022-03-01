@@ -102,7 +102,7 @@ const uploadToIPFS = async(nftName: string, nftDesc: string) => {
   try {
     const ipfs = await IPFS.create()
     const { cid } = await ipfs.add(metadata)
-    console.log(cid)
+    console.log(cid.toString())
     return cid;
   } catch(error) {
     console.log('error to upload to ipfs', error)
@@ -110,8 +110,8 @@ const uploadToIPFS = async(nftName: string, nftDesc: string) => {
   }
 }
 
-const getMetadataFromTokenURI = async () => {
-  let ipfsURI = ''
+const getMetadataFromTokenURI = async (cid: string) => {
+  let ipfsURI = 'https://ipfs.io/ipfs/' + cid
   const response = await fetch(ipfsURI);
   const jsonData = await response.json();
   return jsonData;
@@ -143,11 +143,46 @@ const getTotalCoin = async() => {
 }
 
 const getTokenList = async(userWallet: string) => {
+  if(userWallet) {
+    // @ts-ignore
+    window.web3 = new Web3(window.ethereum);
+    const contract = await new window.web3.eth.Contract(nftABI, NFT_CONTRACT);
+    const tokens = await contract.methods.getTokensListOwnedByUser(userWallet).call()
+    return tokens;
+  } else {
+    return false;
+  }
+}
+
+const getTokenURIList = async(userWallet: string) => {
+  if(userWallet) {
+    // @ts-ignore
+    window.web3 = new Web3(window.ethereum);
+    const contract = await new window.web3.eth.Contract(nftABI, NFT_CONTRACT);
+    const tokenURI = await contract.methods.getTokenURIListOwnedByUser(userWallet).call()
+    return tokenURI;
+  } else {
+    return false;
+  }
+}
+
+const checkUserAllowance = async(userWallet: string) => {
   // @ts-ignore
   window.web3 = new Web3(window.ethereum);
-  const contract = await new window.web3.eth.Contract(nftABI, NFT_CONTRACT);
-  const tokens = await contract.methods.getTokenURIListOwnedByUser(userWallet).call()
-  return tokens;
+  const contract = await new window.web3.eth.Contract(coinABI, COIN_CONTRACT);
+  const allowance = await contract.methods.allowance(userWallet, NFT_CONTRACT).call()
+  return allowance;
+}
+
+const allowUserWallet = async(userWallet: string) => {
+  // @ts-ignore
+  window.web3 = new Web3(window.ethereum);
+  const contract = await new window.web3.eth.Contract(coinABI, COIN_CONTRACT);
+  const amount = ethers.utils.parseUnits(String(1000), 'ether')
+  const allowance = await contract.methods.approve(NFT_CONTRACT, amount).send({
+    from: userWallet
+  })
+  return allowance;
 }
 
 const mintNFT = async(name: string, desc: string) => {
@@ -187,8 +222,11 @@ export {
   mintNFT, 
   validateMinter,
   getTokenList,
+  getTokenURIList,
   getLastTokenID,
   getTotalSupply,
   getTotalCoin,
-  getMetadataFromTokenURI
+  getMetadataFromTokenURI,
+  checkUserAllowance,
+  allowUserWallet
 };

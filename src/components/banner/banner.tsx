@@ -17,10 +17,10 @@ const Banner = (props: Props) => {
     <div className="banner">
       <div className="banner-background"></div>
       <div className="banner-content">
-        <h1 className="h1">Squid Moon NFT's</h1>
+        <h1 className="h1">xTokens</h1>
         {!isConnected ? 
           <>
-            <p className="banner-desc">Connect your wallet to determine which NFTs your account is eligible to mint</p>
+            <p className="banner-desc">Connect your wallet to mint</p>
             <button className="main-btn" onClick={connectWallet}>Connect Wallet</button>
           </> : <></>
         }

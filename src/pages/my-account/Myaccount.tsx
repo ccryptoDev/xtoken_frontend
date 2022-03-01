@@ -7,6 +7,7 @@ import NFTs from '../../components/nfts'
 const MyAccount = () => {
   const [isConnected, setIsConnected] = useState(false)
   const walletConnected = useSelector<RootState, boolean>((state) => state.user.walletConnected)
+  const userWallet = useSelector<RootState, string>((state) => state.user.userAddress)
 
   useEffect(() => {
     if(walletConnected) {
@@ -20,7 +21,7 @@ const MyAccount = () => {
     <>
       <Header isConnected={isConnected} />
       <div className="my-account">
-        <NFTs isConnected={isConnected} />
+        <NFTs userWallet={userWallet} />
       </div>
     </>
   )

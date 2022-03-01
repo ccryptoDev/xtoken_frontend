@@ -79,8 +79,6 @@
   font-size: 85px;
   line-height: 104%;
   margin: 0;
-  /* background: radial-gradient(115.34% 5272.35% at 91.11% 0%, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%),
-  linear-gradient(0deg, #FEE720, #FEE720); */
   background-color: #FEE720;
   background-image: linear-gradient(45deg, #FEE720, #FFF);
   background-size: 100%;
@@ -139,6 +137,7 @@
   border: 1.75px solid #101820;
   border-radius: 44px;
   padding: 6px 5px;
+  margin-bottom: 4rem;
 }
 .my-account .nft-block {
   box-shadow: none;
