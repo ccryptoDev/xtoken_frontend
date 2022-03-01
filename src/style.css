@@ -2,7 +2,7 @@
   display: inline-block;
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   background: #000;
   background-size: cover;
 }
@@ -71,7 +71,7 @@
   border: 1px solid #FEE720;
   color: #FEE720;
 }
-.h1 {
+.h1, .my-account h1 {
   color: #fff;
   font-family: Manrope-bold;
   font-style: normal;
@@ -87,6 +87,11 @@
   background-repeat: repeat;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+.my-account h1 {
+  font-size: 35px;
+  text-align: center;
+  margin: 2rem 0;
 }
 .banner-desc {
   color: #fff;

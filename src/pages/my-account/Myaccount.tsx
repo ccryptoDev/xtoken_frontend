@@ -20,7 +20,6 @@ const MyAccount = () => {
     <>
       <Header isConnected={isConnected} />
       <div className="my-account">
-        <h1>My NFTs</h1>
         <NFTs isConnected={isConnected} />
       </div>
     </>

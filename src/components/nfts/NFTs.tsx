@@ -13,11 +13,14 @@ const NFTs = (props: Props) => {
   const nfts: Array<NFTtype> = NFTdata;
 
   return (
-    <div className="my-nfts">
-      {nfts.map((nftData: NFTtype) => (
-        <NFT nftData={nftData} num={nftData.id} key={nftData.id} />
-      ))}
-    </div>
+    <>
+      <h1>My NFTs</h1>
+      <div className="my-nfts">
+        {nfts.map((nftData: NFTtype) => (
+          <NFT nftData={nftData} num={nftData.id} key={nftData.id} />
+        ))}
+      </div>
+    </>
   )
 }
 

@@ -4,8 +4,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { 
   Header,
-  Banner,
-  NFTs
 } from '../../components';
 import { RootState } from '../../utils/types';
 import { 
@@ -117,7 +115,6 @@ const HomePage = (): JSX.Element | null => {
         draggable
         pauseOnHover
       />
-      {/* <NFTs isConnected={isConnected} /> */}
     </>
   );
 }
