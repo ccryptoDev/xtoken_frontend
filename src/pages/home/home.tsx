@@ -16,6 +16,7 @@ import {
 } from '../../utils/useWeb3'
 import '../../style.css';
 import nftImg from '../../assets/nft.png'
+import * as Rx from 'rxjs'
 
 const HomePage = (): JSX.Element | null => {
   const [isConnected, setIsConnected] = useState(false)
@@ -27,6 +28,50 @@ const HomePage = (): JSX.Element | null => {
   const [totalCoin, setTotalCoin] = useState('')
   const [nftPrice, setNftPrice] = useState(Number(10))
   const [tokenList, setTokenList] = useState([])
+
+  /**
+   * exam BehaviorSubject
+   */
+  const random = () => {
+    const random = Math.random() * (1 - 100)
+    return random;
+  }
+
+  // const numbers = Rx.timer(2000, 3000);
+  // numbers.subscribe(x => {
+  //   console.log(x)
+  // });
+
+  useEffect(() => {
+    // const subject = new Rx.BehaviorSubject(random());
+    // subject.subscribe(data => {
+    //   console.log('Subscriber A', data)
+    // })
+    // subject.next(random());
+    // subject.next(random());
+
+    // subject.subscribe(data => {
+    //   console.log('Subscriber B', data)
+    // })
+    // subject.next(random())
+    // console.log('------------------ : ---------', subject.value)
+
+    // const sub1 = new Rx.Subject<number>();
+
+    // // sub1.subscribe({
+    // //   next: (v) => console.log(`observerA: ${v}`)
+    // // });
+    // sub1.subscribe(v => {
+    //   console.log(`observerB: ${v}`)
+    // })
+    // sub1.subscribe({
+    //   next: (v) => console.log(`observerB: ${v}`)
+    // });
+
+    // sub1.next(1);
+    // sub1.next(2);
+
+  }, [])
 
   useEffect(() => {
     async function fetchTotalInfo() {
